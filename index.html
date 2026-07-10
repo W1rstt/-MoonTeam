@@ -25,45 +25,89 @@
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
   --radius: 16px;
   --header-h: 76px;
-  /* 1. Перестраиваем главный контейнер, чтобы контент шел под сайдбаром */
+ /* 1. Перестраиваем главный контейнер, чтобы контент шел под сайдбаром */
 .app-container {
   display: flex;
   flex-direction: column !important;
-  gap: 15px;
+  gap: 20px;
 }
 
 /* 2. Превращаем сайдбар в верхнюю горизонтальную панель */
 .sidebar {
-  position: static !important; /* Убираем фиксированное позиционирование слева */
-  width: 100% !important; /* Растягиваем на всю ширину */
-  height: auto !important; /* Высота теперь зависит от содержимого */
-  transform: none !important; /* Отменяем скрытие/выезд сбоку */
-  display: flex !important; /* Выстраиваем элементы внутри в линию */
+  position: static !important; /* Убираем фиксацию слева */
+  width: 100% !important; /* На всю ширину */
+  height: auto !important; /* Авто-высота */
+  transform: none !important; /* Отменяем скрытие */
+  display: flex !important; /* Элементы в линию */
   align-items: center;
   gap: 20px;
+  background: #11111e; /* Темный фон панели */
+  padding: 12px 20px;
+  border-radius: 8px;
   box-sizing: border-box;
 }
 
-/* 3. Отрезаем лишние элементы, которые больше не нужны в горизонтальном виде */
+/* 3. Корректируем заголовок и скрываем ненужные элементы */
+.sidebar-header {
+  padding: 0 !important;
+  border: none !important;
+}
 .sidebar-header h3 {
-  margin: 0 !important; /* Убираем отступы у заголовка "Директории" */
+  margin: 0 !important;
   white-space: nowrap;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #8a8a9e;
+  letter-spacing: 0.5px;
 }
 .sidebar-close-btn, .sidebar-overlay {
-  display: none !important; /* Прячем кнопку закрытия крестиком и заемнение */
+  display: none !important; /* Скрываем крестик и слой затемнения */
 }
 
 /* 4. Выстраиваем сам список папок горизонтально */
 .categories-list {
   display: flex !important;
-  flex-direction: row !important; /* В строку вместо колонки */
+  flex-direction: row !important; /* В строку */
   align-items: center;
-  gap: 10px; /* Расстояние между папками */
-  flex-wrap: wrap; /* Если папок станет очень много, они перенесутся ниже */
+  gap: 8px; /* Расстояние между кнопками */
+  flex-wrap: wrap; /* Перенос на новую строку, если кнопок много */
   width: 100%;
 }
 
-/* 5. Делаем основной контент на всю ширину */
+/* 5. ПРЕВРАЩАЕМ ЭЛЕМЕНТЫ СПИСКА В ЗАКРУГЛЕННЫЕ КНОПКИ */
+.categories-list > * {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px !important; /* Боковые отступы чуть больше для овальной формы */
+  background: #1e1e2f !important; /* Фон обычной кнопки */
+  color: #fff !important;
+  border-radius: 30px !important; /* Полное закругление углов (кнопки-таблетки) */
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  font-size: 14px;
+  white-space: nowrap;
+  border: none !important;
+}
+
+/* Эффект при наведении на кнопку */
+.categories-list > *:hover {
+  background: #2a2a3f !important;
+}
+
+/* Легкий эффект нажатия */
+.categories-list > *:active {
+  transform: scale(0.96);
+}
+
+/* Стиль для активной (выбранной) кнопки-папки */
+.categories-list > .active,
+.categories-list > [data-active="true"] {
+  background: #6c5ce7 !important; /* Фиолетовый цвет активной кнопки */
+  font-weight: bold;
+}
+
+/* 6. Делаем основной контент на всю ширину */
 .main-content {
   width: 100% !important;
   margin-left: 0 !important;
