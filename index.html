@@ -857,40 +857,28 @@
     .search-wrap { width:100%; }
   }
 
-/* FIX: центрирование текста внутри кнопок папок */
-.categories-list,
-.categories-list li,
-.categories-list div,
+/* FINAL FIX: центрирование содержимого кнопок папок внутри их рамок */
 .categories-list button,
 .categories-list a,
 .categories-list .category-item,
 .categories-list [role="button"],
 .categories-list .folder-title,
 .categories-list div[onclick] {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  vertical-align: middle !important;
-}
-
-.categories-list button *,
-.categories-list a *,
-.categories-list .category-item *,
-.categories-list [role="button"] *,
-.categories-list .folder-title *,
-.categories-list div[onclick] * {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   text-align: center !important;
-  line-height: 1 !important;
-  margin: 0 !important;
+  box-sizing: border-box !important;
 }
 
-.categories-list {
-  align-items: center !important;
-  justify-content: center !important;
+.categories-list button > *,
+.categories-list a > *,
+.categories-list .category-item > *,
+.categories-list [role="button"] > *,
+.categories-list .folder-title > * {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
 }
 
 </style>
